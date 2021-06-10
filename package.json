@@ -1,0 +1,33 @@
+{
+  "name": "weather-app",
+  "version": "1.0.0",
+  "description": "weather app project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thiago-porto25/weather-app.git"
+  },
+  "keywords": [
+    "weather"
+  ],
+  "author": "Thiago Porto",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/thiago-porto25/weather-app/issues"
+  },
+  "homepage": "https://github.com/thiago-porto25/weather-app#readme",
+  "devDependencies": {
+    "@babel/core": "^7.14.5",
+    "@babel/preset-env": "^7.14.5",
+    "babel-loader": "^8.2.2",
+    "eslint": "^7.28.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-config-prettier": "^8.3.0",
+    "prettier": "2.3.1",
+    "webpack": "^5.38.1",
+    "webpack-cli": "^4.7.2"
+  }
+}
