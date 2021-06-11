@@ -12,7 +12,6 @@ const asyncHandler = (function () {
         { mode: 'cors' }
       )
       const bruteData = await result.json()
-      console.log(bruteData)
       return bruteData
     } catch (err) {
       console.log(err)

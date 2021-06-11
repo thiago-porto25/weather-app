@@ -3,8 +3,82 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      src="https://kit.fontawesome.com/59cf6b17a6.js"
+      crossorigin="anonymous"
+    ></script>
+    <link href="./style.css" rel="stylesheet" type="text/css" />
     <title>Weather Guru</title>
   </head>
-  <body></body>
+  <body>
+    <nav>
+      <div class="logoContainer">
+        <div>
+          <i class="fas fa-cloud-sun"></i>
+          <h1 class="logo">Weather Guru</h1>
+        </div>
+      </div>
+      <div class="searchBarContainer">
+        <form class="searchForm" novalidate>
+          <input
+            type="text"
+            required
+            placeholder="Search city..."
+            maxlength="30"
+            minlength="2"
+          />
+          <button class="button searchButton">Search</button>
+          <span class="errorMsg">Invalid input</span>
+        </form>
+      </div>
+      <div class="switchTempContainer">
+        <button class="button switchTemp">
+          <span id="celcius">°C </span>/
+          <span id="fahrenheit"> °F</span>
+        </button>
+      </div>
+    </nav>
+    <main>
+      <div class="mainInfoContainer">
+        <div class="infoCard">
+          <h2 class="cityName">Arraial do Cabo</h2>
+          <h3 class="cityForecast">Clouds</h3>
+          <h1 class="cityTemp">25°C</h1>
+          <div class="highAndLow">
+            <span>H: <span class="highTempValue">25°C</span></span>
+            <span>L: <span class="lowTempValue">20°C</span></span>
+          </div>
+        </div>
+      </div>
+      <div class="addInfoContainer">
+        <div class="addInfo">
+          <div class="addInfoItem feelsLike">
+            <header>FEELS LIKE:</header>
+            <span class="feelsLikeValue"></span>
+          </div>
+          <div class="addInfoItem sunrise">
+            <header>SUNRISE:</header>
+            <span class="sunriseValue"></span>
+          </div>
+          <div class="addInfoItem sunset">
+            <header>SUNSET</header>
+            <span class="sunsetValue"></span>
+          </div>
+          <div class="addInfoItem chanceRain">
+            <header>CHANCE OF RAIN:</header>
+            <span class="chanceRainValue"></span>
+          </div>
+          <div class="addInfoItem humidity">
+            <header>HUMIDITY:</header>
+            <span class="humidityValue"></span>
+          </div>
+          <div class="addInfoItem wind">
+            <header>WIND:</header>
+            <span class="windValue"></span>
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
   <script src="../src/index.js"></script>
 </html>
