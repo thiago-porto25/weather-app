@@ -19,7 +19,8 @@
         </div>
       </div>
       <div class="searchBarContainer">
-        <form class="searchForm" novalidate>
+        <div class="searchDiv">
+          <i class="fas fa-search"></i>
           <input
             type="text"
             required
@@ -27,13 +28,13 @@
             maxlength="30"
             minlength="2"
           />
-          <button class="button searchButton">Search</button>
-          <span class="errorMsg">Invalid input</span>
-        </form>
+        </div>
+        <button class="button searchButton">Search</button>
+        <span class="errorMsg">Invalid input</span>
       </div>
       <div class="switchTempContainer">
         <button class="button switchTemp">
-          <span id="celcius">°C </span>/
+          <span id="celsius" class="selectedTemp">°C </span>/
           <span id="fahrenheit"> °F</span>
         </button>
       </div>
