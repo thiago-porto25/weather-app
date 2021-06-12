@@ -71,6 +71,7 @@ nav {
   border: none;
   outline: none;
   color: white;
+  opacity: 0.8;
   font-size: 17px;
   z-index: 1;
 }
@@ -84,6 +85,20 @@ nav {
 }
 .searchButton:hover {
   background-color: rgb(126, 123, 123);
+}
+::placeholder {
+  color: white;
+  opacity: 0.7;
+}
+
+:-ms-input-placeholder {
+  color: white;
+  opacity: 0.7;
+}
+
+::-ms-input-placeholder {
+  color: white;
+  opacity: 0.7;
 }
 .errorMsg {
   color: red;
