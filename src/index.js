@@ -40,96 +40,111 @@ const misc = (function () {
 })()
 
 const domHandler = (function () {
-  const nameElem = document.querySelector('.cityName')
-  const tempElem = document.querySelector('.cityTemp')
-  const maxTempElem = document.querySelector('.highTempValue')
-  const minTempElem = document.querySelector('.lowTempValue')
-  const feelsElem = document.querySelector('.feelsLikeValue')
-  const sunriseElem = document.querySelector('.sunriseValue')
-  const sunsetElem = document.querySelector('.sunsetValue')
-  const visibilityElem = document.querySelector('.visibilityValue')
-  const humidityElem = document.querySelector('.humidityValue')
-  const windElem = document.querySelector('.windValue')
-  const toggleCelsiusElem = document.querySelector('#celsius')
-  const toggleFahrenheitElem = document.querySelector('#fahrenheit')
+  const _nameElem = document.querySelector('.cityName')
+  const _tempElem = document.querySelector('.cityTemp')
+  const _maxTempElem = document.querySelector('.highTempValue')
+  const _minTempElem = document.querySelector('.lowTempValue')
+  const _feelsElem = document.querySelector('.feelsLikeValue')
+  const _sunriseElem = document.querySelector('.sunriseValue')
+  const _sunsetElem = document.querySelector('.sunsetValue')
+  const _visibilityElem = document.querySelector('.visibilityValue')
+  const _humidityElem = document.querySelector('.humidityValue')
+  const _windElem = document.querySelector('.windValue')
+  const _toggleCelsiusElem = document.querySelector('#celsius')
+  const _toggleFahrenheitElem = document.querySelector('#fahrenheit')
+  const _descriptionElem = document.querySelector('.cityForecast')
+  const _castIcon = document.querySelector('.castIcon')
 
   const _renderName = (name) => {
-    nameElem.textContent = name
+    _nameElem.textContent = name
   }
   const _renderTemp = (temp, scale) => {
     if (scale === 'Celsius') {
-      tempElem.textContent = `${temp}°C`
+      _tempElem.textContent = `${temp}°C`
     } else if (scale === 'Fahrenheit') {
-      tempElem.textContent = `${misc.parseF(temp)}°F`
+      _tempElem.textContent = `${misc.parseF(temp)}°F`
     }
   }
   const _renderTempMax = (tempMax, scale) => {
     if (scale === 'Celsius') {
-      maxTempElem.textContent = `${tempMax}°C`
+      _maxTempElem.textContent = `${tempMax}°C`
     } else if (scale === 'Fahrenheit') {
-      maxTempElem.textContent = `${misc.parseF(tempMax)}°F`
+      _maxTempElem.textContent = `${misc.parseF(tempMax)}°F`
     }
   }
   const _renderTempMin = (tempMin, scale) => {
     if (scale === 'Celsius') {
-      minTempElem.textContent = `${tempMin}°C`
+      _minTempElem.textContent = `${tempMin}°C`
     } else if (scale === 'Fahrenheit') {
-      minTempElem.textContent = `${misc.parseF(tempMin)}°F`
+      _minTempElem.textContent = `${misc.parseF(tempMin)}°F`
     }
   }
   const _renderFeelsLike = (feelsLike, scale) => {
     if (scale === 'Celsius') {
-      feelsElem.textContent = `${feelsLike}°C`
+      _feelsElem.textContent = `${feelsLike}°C`
     } else if (scale === 'Fahrenheit') {
-      feelsElem.textContent = `${misc.parseF(feelsLike)}°F`
+      _feelsElem.textContent = `${misc.parseF(feelsLike)}°F`
     }
   }
   const _renderSunrise = (sunrise) => {
-    sunriseElem.textContent = sunrise
+    _sunriseElem.textContent = sunrise
   }
   const _renderSunset = (sunset) => {
-    sunsetElem.textContent = sunset
+    _sunsetElem.textContent = sunset
   }
   const _renderVisibility = (visibility) => {
-    visibilityElem.textContent = `${visibility} km`
+    _visibilityElem.textContent = `${visibility} km`
   }
   const _renderHumidity = (humidity) => {
-    humidityElem.textContent = `${humidity}%`
+    _humidityElem.textContent = `${humidity}%`
   }
   const _renderWind = (wind) => {
-    windElem.textContent = `${wind} km/h`
+    _windElem.textContent = `${wind} km/h`
+  }
+  const _renderDescription = (desc) => {
+    _descriptionElem.textContent = desc
+
+    if (desc === 'Clouds')
+      _castIcon.setAttribute('class', 'fas castIcon fa-cloud')
+    else if (desc === 'Rain' || desc === 'Thunderstorm' || desc === 'Drizzle')
+      _castIcon.setAttribute('class', 'fas castIcon fa-cloud-rain')
+    else if (desc === 'Clear')
+      _castIcon.setAttribute('class', 'fas castIcon fa-sun')
+    else if (desc === 'Snow')
+      _castIcon.setAttribute('class', 'fas castIcon fa-snowflake')
+    else _castIcon.setAttribute('class', 'fas castIcon fa-smog')
   }
 
   const renderChangedScale = () => {
     if (misc.currentScale === 'Fahrenheit') {
-      tempElem.textContent = `${misc.parseF(
-        parseInt(tempElem.textContent, 10)
+      _tempElem.textContent = `${misc.parseF(
+        parseInt(_tempElem.textContent, 10)
       )}°F`
-      maxTempElem.textContent = `${misc.parseF(
-        parseInt(maxTempElem.textContent, 10)
+      _maxTempElem.textContent = `${misc.parseF(
+        parseInt(_maxTempElem.textContent, 10)
       )}°F`
-      minTempElem.textContent = `${misc.parseF(
-        parseInt(minTempElem.textContent, 10)
+      _minTempElem.textContent = `${misc.parseF(
+        parseInt(_minTempElem.textContent, 10)
       )}°F`
-      feelsElem.textContent = `${misc.parseF(
-        parseInt(feelsElem.textContent, 10)
+      _feelsElem.textContent = `${misc.parseF(
+        parseInt(_feelsElem.textContent, 10)
       )}°F`
     } else {
-      tempElem.textContent = `${misc.parseC(
-        parseInt(tempElem.textContent, 10)
+      _tempElem.textContent = `${misc.parseC(
+        parseInt(_tempElem.textContent, 10)
       )}°C`
-      maxTempElem.textContent = `${misc.parseC(
-        parseInt(maxTempElem.textContent, 10)
+      _maxTempElem.textContent = `${misc.parseC(
+        parseInt(_maxTempElem.textContent, 10)
       )}°C`
-      minTempElem.textContent = `${misc.parseC(
-        parseInt(minTempElem.textContent, 10)
+      _minTempElem.textContent = `${misc.parseC(
+        parseInt(_minTempElem.textContent, 10)
       )}°C`
-      feelsElem.textContent = `${misc.parseC(
-        parseInt(feelsElem.textContent, 10)
+      _feelsElem.textContent = `${misc.parseC(
+        parseInt(_feelsElem.textContent, 10)
       )}°C`
     }
-    toggleFahrenheitElem.classList.toggle('selectedTemp')
-    toggleCelsiusElem.classList.toggle('selectedTemp')
+    _toggleFahrenheitElem.classList.toggle('selectedTemp')
+    _toggleCelsiusElem.classList.toggle('selectedTemp')
   }
 
   const renderAllInfo = (data) => {
@@ -144,15 +159,16 @@ const domHandler = (function () {
     _renderVisibility(data.visibility)
     _renderHumidity(data.humidity)
     _renderWind(data.wind)
+    _renderDescription(data.description)
   }
 
   return { renderAllInfo, renderChangedScale }
 })()
 
 const topLogic = (function () {
-  const searchButton = document.querySelector('.searchButton')
-  const searchBar = document.querySelector('.searchbar')
-  const toggleScaleButton = document.querySelector('.switchTemp')
+  const _searchButton = document.querySelector('.searchButton')
+  const _searchBar = document.querySelector('.searchbar')
+  const _toggleScaleButton = document.querySelector('.switchTemp')
 
   function _changeScale() {
     if (misc.currentScale === 'Celsius') {
@@ -164,14 +180,14 @@ const topLogic = (function () {
   }
 
   function _parseDate(unix) {
-    const date = new Date(unix * 1000)
-    let hour = date.getHours()
-    let minutes = date.getMinutes()
+    const _date = new Date(unix * 1000)
+    let _hour = _date.getHours()
+    let _minutes = _date.getMinutes()
 
-    if (hour < 10) hour = `0${hour}`
-    if (minutes < 10) minutes = `0${minutes}`
+    if (_hour < 10) _hour = `0${_hour}`
+    if (_minutes < 10) _minutes = `0${_minutes}`
 
-    return `${hour}:${minutes}`
+    return `${_hour}:${_minutes}`
   }
 
   function _cleanData(data) {
@@ -186,20 +202,26 @@ const topLogic = (function () {
       visibility: Math.round(data.visibility / 1000),
       humidity: Math.round(data.main.humidity),
       wind: Math.round(data.wind.speed * 3.6),
+      description: data.weather[0].main,
     }
     return _cleanedData
   }
 
-  async function displayInfo() {
-    const location = searchBar.value
-    const _bruteData = await asyncHandler.getWeatherData(location)
+  async function _displayInfo(locale) {
+    let _location
+
+    if (typeof locale === 'string') _location = locale
+    else _location = _searchBar.value
+
+    const _bruteData = await asyncHandler.getWeatherData(_location)
+    console.log(_bruteData)
     const _cleanedData = _cleanData(_bruteData)
     domHandler.renderAllInfo(_cleanedData)
-    searchBar.value = ''
+    _searchBar.value = ''
   }
 
-  searchButton.addEventListener('click', displayInfo)
-  toggleScaleButton.addEventListener('click', _changeScale)
+  _searchButton.addEventListener('click', _displayInfo)
+  _toggleScaleButton.addEventListener('click', _changeScale)
 
-  return { displayInfo }
+  _displayInfo('Arraial do Cabo')
 })()
