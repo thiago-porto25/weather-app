@@ -2,6 +2,8 @@
 /* eslint-disable no-console */
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable func-names */
+import 'regenerator-runtime/runtime'
+
 const asyncHandler = (function () {
   const _key = 'f597bfe05121afdfb2f2b115097ef459'
 

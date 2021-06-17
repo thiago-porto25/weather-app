@@ -21,13 +21,19 @@
   "homepage": "https://github.com/thiago-porto25/weather-app#readme",
   "devDependencies": {
     "@babel/core": "^7.14.5",
+    "@babel/plugin-transform-runtime": "^7.14.5",
     "@babel/preset-env": "^7.14.5",
     "babel-loader": "^8.2.2",
+    "babel-plugin-transform-runtime": "^6.23.0",
     "eslint": "^7.28.0",
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-config-prettier": "^8.3.0",
     "prettier": "2.3.1",
     "webpack": "^5.38.1",
     "webpack-cli": "^4.7.2"
+  },
+  "dependencies": {
+    "@babel/runtime": "^7.14.6",
+    "regenerator-runtime": "^0.13.7"
   }
 }
