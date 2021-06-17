@@ -15,7 +15,6 @@ const asyncHandler = (function () {
       const bruteData = await result.json()
       return bruteData
     } catch (err) {
-      console.log(err)
       return 'There was an error'
     }
   }
@@ -54,6 +53,7 @@ const domHandler = (function () {
   const _toggleFahrenheitElem = document.querySelector('#fahrenheit')
   const _descriptionElem = document.querySelector('.cityForecast')
   const _castIcon = document.querySelector('.castIcon')
+  const _errorMessage = document.querySelector('.errorMsg')
 
   const _renderName = (name) => {
     _nameElem.textContent = name
@@ -162,7 +162,20 @@ const domHandler = (function () {
     _renderDescription(data.description)
   }
 
-  return { renderAllInfo, renderChangedScale }
+  const renderErrorMessage = () => {
+    _errorMessage.style.display = 'flex'
+  }
+
+  const unrenderErrorMessage = () => {
+    _errorMessage.style.display = 'none'
+  }
+
+  return {
+    renderAllInfo,
+    renderChangedScale,
+    renderErrorMessage,
+    unrenderErrorMessage,
+  }
 })()
 
 const topLogic = (function () {
@@ -213,11 +226,19 @@ const topLogic = (function () {
     if (typeof locale === 'string') _location = locale
     else _location = _searchBar.value
 
-    const _bruteData = await asyncHandler.getWeatherData(_location)
-    console.log(_bruteData)
-    const _cleanedData = _cleanData(_bruteData)
-    domHandler.renderAllInfo(_cleanedData)
-    _searchBar.value = ''
+    try {
+      if (_location === undefined || /^\s+$/.test(_location)) throw Error
+      const _bruteData = await asyncHandler.getWeatherData(_location)
+      const _cleanedData = _cleanData(_bruteData)
+      domHandler.renderAllInfo(_cleanedData)
+      _searchBar.value = ''
+    } catch (err) {
+      domHandler.renderErrorMessage()
+      setTimeout(() => {
+        domHandler.unrenderErrorMessage()
+        _searchBar.value = ''
+      }, 3000)
+    }
   }
 
   _searchButton.addEventListener('click', _displayInfo)
