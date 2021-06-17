@@ -54,6 +54,7 @@ const domHandler = (function () {
   const _descriptionElem = document.querySelector('.cityForecast')
   const _castIcon = document.querySelector('.castIcon')
   const _errorMessage = document.querySelector('.errorMsg')
+  const _modal = document.querySelector('.modal')
 
   const _renderName = (name) => {
     _nameElem.textContent = name
@@ -170,11 +171,21 @@ const domHandler = (function () {
     _errorMessage.style.display = 'none'
   }
 
+  const renderModal = () => {
+    _modal.style.display = 'flex'
+  }
+
+  const unrenderModal = () => {
+    _modal.style.display = 'none'
+  }
+
   return {
     renderAllInfo,
     renderChangedScale,
     renderErrorMessage,
     unrenderErrorMessage,
+    renderModal,
+    unrenderModal,
   }
 })()
 
@@ -228,11 +239,14 @@ const topLogic = (function () {
 
     try {
       if (_location === undefined || /^\s+$/.test(_location)) throw Error
+      domHandler.renderModal()
       const _bruteData = await asyncHandler.getWeatherData(_location)
       const _cleanedData = _cleanData(_bruteData)
       domHandler.renderAllInfo(_cleanedData)
       _searchBar.value = ''
+      domHandler.unrenderModal()
     } catch (err) {
+      domHandler.unrenderModal()
       domHandler.renderErrorMessage()
       setTimeout(() => {
         domHandler.unrenderErrorMessage()
