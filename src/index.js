@@ -55,6 +55,7 @@ const domHandler = (function () {
   const _castIcon = document.querySelector('.castIcon')
   const _errorMessage = document.querySelector('.errorMsg')
   const _modal = document.querySelector('.modal')
+  const _main = document.querySelector('main')
 
   const _renderName = (name) => {
     _nameElem.textContent = name
@@ -105,15 +106,26 @@ const domHandler = (function () {
   const _renderDescription = (desc) => {
     _descriptionElem.textContent = desc
 
-    if (desc === 'Clouds')
+    if (desc === 'Clouds') {
       _castIcon.setAttribute('class', 'fas castIcon fa-cloud')
-    else if (desc === 'Rain' || desc === 'Thunderstorm' || desc === 'Drizzle')
+      _main.style.backgroundImage = 'url(./images/cloud.jpg)'
+    } else if (
+      desc === 'Rain' ||
+      desc === 'Thunderstorm' ||
+      desc === 'Drizzle'
+    ) {
       _castIcon.setAttribute('class', 'fas castIcon fa-cloud-rain')
-    else if (desc === 'Clear')
+      _main.style.backgroundImage = 'url(./images/rain.jpg'
+    } else if (desc === 'Clear') {
       _castIcon.setAttribute('class', 'fas castIcon fa-sun')
-    else if (desc === 'Snow')
+      _main.style.backgroundImage = 'url(./images/clearSky.jpg)'
+    } else if (desc === 'Snow') {
       _castIcon.setAttribute('class', 'fas castIcon fa-snowflake')
-    else _castIcon.setAttribute('class', 'fas castIcon fa-smog')
+      _main.style.backgroundImage = 'url(./images/snow.jpg)'
+    } else {
+      _castIcon.setAttribute('class', 'fas castIcon fa-smog')
+      _main.style.backgroundImage = 'url(./images/mist.jpg)'
+    }
   }
 
   const renderChangedScale = () => {
